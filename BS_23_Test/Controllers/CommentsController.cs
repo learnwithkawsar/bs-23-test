@@ -38,5 +38,19 @@ namespace BS_23_Test.Controllers
                 return BadRequest("Not saved");
             }
         }
+        [Route("SaveLike")]
+        [HttpPost]
+        public IActionResult SaveLike(int CoomentId, bool IsLiked)
+        {
+            var res = _commentsService.SaveLike(CoomentId,IsLiked).Result;
+            if (res)
+            {
+                return Ok("Save Successfull");
+            }
+            else
+            {
+                return BadRequest("Not saved");
+            }
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using BS_23_Test.DBContext;
 using BS_23_Test.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,31 @@ namespace BS_23_Test.Repository
                 throw e;
             }
            
+        }
+
+        public async Task<bool> SaveLike(int CommentsId, bool IsLiked)
+        {
+            try
+            {
+                var comment = _dbContext.Set<Comments>().Find(CommentsId);
+                if (IsLiked)
+                {
+                    comment.NoOfLike += 1;
+                }
+                else
+                {
+                    comment.NoOfLike -= 1;
+                }
+
+                _dbContext.Entry(comment).State = EntityState.Modified;
+                    return await _dbContext.SaveChangesAsync() > 0;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

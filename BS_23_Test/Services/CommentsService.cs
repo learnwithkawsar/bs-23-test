@@ -18,5 +18,10 @@ namespace BS_23_Test.Services
         {
             return _commentsRepository.AddComments(comments);
         }
+
+        public Task<bool> SaveLike(int CommentsId, bool IsLiked)
+        {
+            return _commentsRepository.SaveLike(CommentsId, IsLiked);
+        }
     }
 }

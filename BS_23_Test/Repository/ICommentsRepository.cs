@@ -9,5 +9,6 @@ namespace BS_23_Test.Repository
     public interface ICommentsRepository
     {
         Task<bool> AddComments(Comments comments);
+        Task<bool> SaveLike(int CommentsId, bool IsLiked);
     }
 }
